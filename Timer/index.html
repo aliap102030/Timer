@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+</head>
+<body>
+    <button onclick="startTimer()" id="timer">دریافت رمز پویا</button>
+
+    <style>
+        @font-face {
+            font-family: iransans;
+            src: url(./IRANSansWeb.ttf);
+        }
+        body {
+            font-family: iransans;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #timer {
+            font-size: 80px;
+            padding: 10px 20px;
+        }
+    </style>
+
+    <script>
+        var time = 120;  
+  
+     
+        function renderTimer() {
+            var timer = document.getElementById("timer");
+            var minute = Math.floor(time / 60);  
+            var second = time % 60; 
+            var showMinutes = String(minute).padStart(2, "0"); 
+            var showSecond = String(second).padStart(2, "0");  
+            timer.textContent = showMinutes + ":" + showSecond; 
+        }
+
+       
+        function startTimer() {
+            var timer = document.getElementById("timer");
+            timer.disabled = true;
+            var  interval = setInterval(function() {
+                if (time > 0) {
+                    time--; 
+                    renderTimer();  
+                } else {
+                  
+                    clearInterval(interval);  
+                    timer.textContent = "دریافت رمز پویا";  
+                    timer.disabled = false;  
+                    time = 120;  
+                }
+            }, 1000);  
+        }
+    </script>
+</body>
+</html>
